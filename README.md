@@ -97,3 +97,39 @@ pip install xlwings
 </details>
 <br>
 
+
+# 액셀 자동화 기초 
+## 액셀 파일 다루기
+<details>
+<summary>접기/ 펼치기</summary>
+
+### 액셀 신규 생성(앱,워크북 생성, 시트명 변경, 액셀 저장 및 종료)
+```py
+import xlwings as xw # xlwinngs import 및 xw 별칭 부여
+
+# 액셀 앱 만들기
+app = xw.App(add_book=False) # 액셀 생성 및 오픈
+
+# 액셀 워크북 만들기
+wb = app.books.add() # 생성되어 열린 액셀파일에 워크시트(통합문서 2) 생성
+
+# 워크시트 선택(이름)
+ws = wb.sheets['Sheet1']
+
+# 시트 이름 변경
+ws.name = "영업1팀"
+
+# 다른 이름으로 액셀 저장
+wb.save('교육이슈현황.xlsx')
+
+# 워크북 닫기
+wb.close()
+
+# 액셀 앱 닫기
+app.quit()
+```
+
+
+</details>
+<br>
+<hr>
