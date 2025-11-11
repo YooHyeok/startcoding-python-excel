@@ -170,3 +170,45 @@ app.quit()
 </details>
 <br>
 <hr>
+
+## 셀 다루기
+<details>
+<summary>접기/ 펼치기</summary>
+
+### 액셀 데이터 삽입
+- 마케팅 팀의 교육 이수 현황 로직 구현
+  ```py
+  import xlwings as xw
+
+  app = xw.App(add_book=False) # 액셀 프로그램(앱) 생성
+  wb = app.books.open('교육이수현황.xlsx') # 교육이슈현황.xlsx 액셀파일 열기 및 변수 저장
+  ws = wb.sheets['마케팅팀'] # 열린 액셀파일의 마케팅팀 시트 선택 및 변수 저장
+
+  # 데이터 1개 입력 - A1셀에 '성명', B1셀에 '1월' 값 삽입
+  ws.range('A1').value = '성명'
+  ws.range('B1').value = '1월'
+
+  # A2, B2 각각의 셀에 리신, 12 값 삽입
+  ws.range('A2').value = '리신'
+  ws.range('B2').value = 12
+
+  # 데이터 여러 개 입력 - 리스트
+  ws.range('A3').value = ['이즈리얼', 5]
+  ws.range('A4').value = [['야스오', 0], ['요네', 0]] # A4 셀 기준 2차원 배열 형태로 데이터 삽입 (A4, B4, A5, B5열 순차적으로 삽입됨)
+
+  # 데이터 여러 개 입력 - 세로
+  ws.range('A6').options(transpose=True).value = ['피즈', '샤코'] # A6기준으로 세로 리스트 삽입
+  ws.range('B6').options(transpose=True).value = [15.5, 8] # B6기준으로 세로 리스트 삽입
+
+  # 수식 입력
+  ws.range('A8').value = '합계'
+  ws.range('B8').value = '=sum(B2:B7)'
+  ```
+
+크롤릴을 통해 실시간으로 수집한 데이터를 원하는 위치에 넣을 수도 있으며,  
+다른 파일, 데이터 베이스에서 추출한 데이터를 넣을수도 있다.  
+
+
+</details>
+<br>
+<hr>
