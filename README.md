@@ -289,3 +289,63 @@ ws.range('A1:D1').font.color = (250, 250, 0) # 밝은 회색
 </details>
 <br>
 <hr>
+
+# 폴더 파일 자동화
+
+## 상대경로 vs 절대경로
+<details>
+<summary>접기/펼치기</summary>
+<br>
+
+### 경로(path)
+파일 및 폴더의 위치를 말한다.
+ex) `Documents/images/프사/셀카.jpg`
+
+### 디렉토리
+폴더를 디렉토리라고도 표현한다.
+ex) `Documents/images/프사/`
+
+### 절대경로
+최초 디렉토리를 기준으로 경로를 설정한 것
+ex) `C:/Documents/images/프사/셀카.jpg`
+
+### 상대경로(relative path)
+현재 디렉토리를 기준으로 경로를 설정한 것
+ex) 현재위치: `C:/Documents/images` → 상대경로:`./프사/셀카.jpg`
+
+### OS 모듈 (Operating System)
+파이썬에 기본적으로 내장되어 있는 라이브러리로 운영체제에서 제공하는 여러기능을 파이썬에서 사용할 수 있게 해준다.
+
+#### os 기본 명령어
+  | 명령어                          | 기능                   |
+  | ------------------------------ | :--------------------- |
+  | os.mkdir('path')            	 | 디렉토리 만들기          |
+  | os.rmdir('path')            	 | 디렉토리 만들기          |
+  | os.rename('path1','path2')     | 파일 이름 변경 또는 이동  |
+  | os.remove('path')            	 | 파일 삭제               |
+  | os.getcwd()            	       | 현재 경로 확인          |
+
+
+#### os.path 모듈 명령어
+  | 명령어                            | 기능                                |
+  | -------------------------------- | :---------------------------------- |
+  | os.path.exists('path')        	 | 파일 및 디렉토리의 존재여부 확인<br>(반환값은 bool형) |
+  | os.path.join('path1', 'path2')   | 경로 합치기                          |
+  | os.path.splitext('path')         | 파일명과 확장자를 분리해서 반환         |
+  | os.path.split('path')            | 디렉토리와 파일로 분리해서 반환         |
+  | os.path.basename('path')         | 경로의 기본 이름을 반환(ex, test.xlsx) |
+</details>
+<br>
+<hr>
+
+
+## Template
+<details>
+<summary>접기/펼치기</summary>
+<br>
+
+</details>
+<br>
+<hr>
+
+
