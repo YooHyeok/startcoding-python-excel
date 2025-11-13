@@ -401,6 +401,36 @@ if not os.path.exists(path):
 <br>
 <hr>
 
+## 파일 100개 이름 변경
+<details>
+<summary>접기/펼치기</summary>
+<br>
+
+### 파일 입출력 - txt 파일 생성
+```py
+f = open('일기.txt', 'w', encoding = 'utf-8')
+f.write('오늘 한잔하고 싶은 날이다...')
+f.close()
+```
+
+### 파일 100개 생성
+```py
+import random
+for i in range(1, 101):
+  f = open(f'참이슬/판매_데이터{i}.txt', 'w', encoding = 'utf-8')
+  f.write(f'{random.randint(1, 100)}병')
+  f.close()
+```
+
+### 파일 100개 이름 수정
+```py
+import os
+for i in range(1, 101):
+  os.rename(f'참이슬/판매_데이터{i}.txt', f'참이슬/sale_data{i}.txt')
+```
+</details>
+<br>
+<hr>
 
 
 ## Template
