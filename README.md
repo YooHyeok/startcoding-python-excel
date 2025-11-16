@@ -598,6 +598,112 @@ shutil.copy('카스/일기.txt', '테라') # 카스/일기.txt를 테라 디렉�
 <br>
 <hr>
 
+## 폴더 자동정리 프로그램
+<details>
+<summary>접기/펼치기</summary>
+<br>
+
+### 구현할 내용
+1. `보고서` 단어가 포함된 파일들을 `보고서파일` 폴더로 이동
+2. `보고서` 단어가 포함된 파일들을 `데이터파일` 폴더로 이동
+3. `계산서` 단어가 포함된 파일들을 `계산서파일` 폴더로 이동  
+
+### 구현 과정
+1번 파일명에 `보고서` 단어가 포함된 파일들을 추출하여 `보고서파일` 폴더로 이동하는 프로그램에 대한 구현 과정을 작성한다.
+
+#### 1. [공유폴더.zip](https://cafe.naver.com/startcodingofficial/2) 다운로드 및 공유폴더 디렉토리 생성(압축 풀기)
+
+#### 2. `보고서` 단어가 포함된 파일 추출
+glob을 활용하여 지정한 단어가 포함된 파일을 추출한다.
+```py
+import glob
+glob.glob('C:/Users/프로젝트폴더/공유폴더/*보고서*')
+```
+#### 3. 폴더가 없을경우 생성
+추출한 파일을 폴더로 이동시키기 전 폴더가 있는지 체크한 후 없을경우 생성한다.
+```py
+import os
+path = 'C:/Users/프로젝트폴더/공유폴더/보고서파일'
+if not os.path.exists(path):
+  os.mkdir(path)
+```
+#### 4. 파일을 폴더로 이동
+2번 과정에서 추출한 파일들을 지정한 폴더로 이동시킨다.
+```py
+import glob, shutil
+for i in glob.glob('C:/Users/프로젝트폴더/공유폴더/*보고서*'):
+  shutil.move(i, path)
+```
+
+#### 5. 데이터, 계산서 로직 구현
+```py
+import os, glob, shutil
+path = 'C:/Users/프로젝트폴더/공유폴더/데이터파일'
+if not os.path.exists(path):
+  os.mkdir(path)
+for i in glob.glob('C:/Users/프로젝트폴더/공유폴더/*데이터*'):
+  shutil.move(i, path)
+```
+```py
+import os, glob, shutil
+path = 'C:/Users/프로젝트폴더/공유폴더/계산서파일'
+if not os.path.exists(path):
+  os.mkdir(path)
+for i in glob.glob('C:/Users/프로젝트폴더/공유폴더/*계산서*'):
+  shutil.move(i, path)
+```
+
+#### 6. 보고서, 데이터, 계산서 단어에 대한 자동화 로직 구현
+```py
+import os, glob, shutil
+num = 1
+path = f'C:/Users/~/프로젝트폴더/공유폴더_심화{num}'
+shutil.copytree(r'C:\Users\프로젝트폴더\공유폴더_origin', path)
+
+keyword_list = ['보고서', '데이터', '계산서']
+for keyword in keyword_list:
+  path = f'C:/Users/프로젝트폴더/공유폴더_심화{num}/{keyword}파일'
+  if not os.path.exists(path):
+    os.mkdir(path)
+  for i in glob.glob(f'C:/Users/프로젝트폴더/공유폴더_심화{num}/*{keyword}*'):
+    shutil.move(i, path)
+```
+
+**[escape raw string]**
+```py
+num = 2
+path = rf'C:\Users\프로젝트폴더\공유폴더_심화{num}'
+shutil.copytree(r'C:\Users\프로젝트폴더\공유폴더_origin', path)
+
+keyword_list = ['보고서', '데이터', '계산서']
+for keyword in keyword_list:
+  path = rf'C:\Users\프로젝트폴더\공유폴더_심화{num}\{keyword}파일'
+  if not os.path.exists(path):
+    os.mkdir(path)
+  for i in glob.glob(rf'C:\Users\프로젝트폴더\공유폴더_심화{num}\/*{keyword}*'):
+    shutil.move(i, path)
+```
+
+
+**[강의 최종 코드]**  
+```py
+import os, glob, shutil
+num = 4
+target_folder = r'C:\Users\프로젝트폴더\공유폴더_심화'
+shutil.copytree(r'C:\Users\프로젝트폴더\공유폴더_origin', f'{target_folder}{num}')
+
+keyword_list = ['보고서', '데이터', '계산서']
+for keyword in keyword_list:
+  file_list = glob.glob(f'{target_folder}{num}\/*{keyword}*')
+  if not os.path.exists(f'{target_folder}{num}\{keyword}파일'):
+    os.mkdir(f'{target_folder}{num}\{keyword}파일')
+  for i in file_list:
+    shutil.move(i, f'{target_folder}{num}\{keyword}파일')
+```
+
+</details>
+<br>
+<hr>
 
 ## Template
 <details>
