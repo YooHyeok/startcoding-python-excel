@@ -705,6 +705,65 @@ for keyword in keyword_list:
 <br>
 <hr>
 
+### 여러 액셀파일 내용 변경
+<details>
+<summary>접기/펼치기</summary>
+<br>
+
+#### 실습1.
+```
+여러개의 액셀파일을 바꾸는 프로그램을 만든다.
+`C:\Users\프로젝트폴더\공유폴더\계산서폴더` 결로에 존재하는 `계산서` 단어가 포함된 5개의 액셀파일들중
+ `자료입력페이지` 시트의 `작성일자`를 `2030-02-01` 값으로 한번에 수정
+```
+
+##### 1. 한개의 액셀파일 자동화
+```py
+import xlwings as xw
+app = xw.App(add_book=False)
+wb = app.books.open(r'C:\Users\프로젝트폴더\공유폴더\계산서파일\세금계산서_놀부전자.xlsx')
+ws = wb.sheets['자료입력페이지']
+ws.range('C14').value = '2030-02-01'
+wb.save()
+app.quit()
+```
+
+##### 2. 파일목록 추출
+```py
+import glob
+for file in glob.glob(r'C:\Users\프로젝트폴더\공유폴더\계산서파일\*.xlsx'):
+  print(file)
+```
+
+##### 3. 추출된 파일 목록에 액셀 자동화 적용
+```py
+import xlwings as xw, glob
+for file in glob.glob(r'C:\Users\프로젝트폴더\공유폴더\계산서파일\*.xlsx'):
+  app = xw.App(add_book=False)
+  wb = app.books.open(file)
+  ws = wb.sheets['자료입력페이지']
+  ws.range('C14').value = '2030-02-01'
+  wb.save()
+  app.quit()
+```
+
+##### 4. 최적화
+```py
+import xlwings as xw, glob
+  app = xw.App(add_book=False)
+for file in glob.glob(r'C:\Users\프로젝트폴더\공유폴더\계산서파일\*.xlsx'):
+  wb = app.books.open(file)
+  ws = wb.sheets['자료입력페이지']
+  ws.range('C14').value = '2030-02-01'
+  wb.save()
+app.quit()
+```
+
+</details>
+<br>
+<hr>
+
+
 ## Template
 <details>
 <summary>접기/펼치기</summary>
